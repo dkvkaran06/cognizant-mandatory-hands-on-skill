@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Product {
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return name + " - ₹" + price;
+    }
+}
+
+class ECommercePlatform {
+
+    public static List<Product> searchProducts(List<Product> products, String keyword) {
+        List<Product> result = new ArrayList<>();
+
+        for (Product product : products) {
+            if (product.getName().toLowerCase().contains(keyword.toLowerCase())) {
+                result.add(product);
+            }
+        }
+
+        return result;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("iPhone 15", 79999));
+        products.add(new Product("Samsung Galaxy S24", 74999));
+        products.add(new Product("Apple Watch", 29999));
+        products.add(new Product("Laptop Dell Inspiron", 55999));
+
+        String keyword = "Apple";
+
+        List<Product> results =
+                ECommercePlatform.searchProducts(products, keyword);
+
+        System.out.println("Search Results:");
+        for (Product product : results) {
+            System.out.println(product);
+        }
+    }
+}
